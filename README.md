@@ -1,6 +1,5 @@
 # Pagina-Web
-Proyecto Web, Análisis de Sistemas I 
-t
+Proyecto Web, Análisis de Sistemas 1
 # 2-20-2020
 - Implementación de Login (Alpha)
 ```
