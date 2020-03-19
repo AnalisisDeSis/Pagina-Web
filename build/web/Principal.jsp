@@ -8,8 +8,49 @@
         <title>Main</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
         
+        
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Menu</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="#">Inicio <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+	<a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="Controlador?menu=Productos&accion=Listar" target="myFrame">Productos</a>
+      </li>
+     <li class="nav-item">
+      <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="Controlador?menu=Pedido&accion=default" target="myFrame">Pedido</a>
+     </li>
+	 </ul>
+  </div>
+ <div class="btn-group">
+     <button style="border: none" type="button" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+              ${usuario.getNombre()}
+            </button>
+                <div class="dropdown-menu  dropdown-menu-right text-center">
+                    <a class="dropdown-item" href="#">
+                        <center>
+                        <img src="img/user.png" alt="60" width="60"/>
+                        </center>
+                    </a>
+                    <a class="dropdown-item" href="#">${usuario.getNit()}</a>
+                    <a class="dropdown-item" href="#">usuario@gmail.com</a>
+                    <div class="dropdown-divider"></div>
+                    <form action="Validar" method="POST">
+                        <button name="accion" value="salir" class="dropdown-item" href="#">Salir</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+                    
+        <div class="m-4" style="height: 550px; ">
+            <iframe name="myFrame" style="height: 100%; width: 100%; border: none"></iframe>
+        </div>
         
         
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

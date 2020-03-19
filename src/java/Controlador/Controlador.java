@@ -5,8 +5,12 @@
  */
 package Controlador;
 
+import Modelo.Producto;
+import Modelo.ProductoDAO;
+import Modelo.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,28 +22,42 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class Controlador extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    Producto pr = new Producto();
+    ProductoDAO pdao = new ProductoDAO();
+  
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            String menu = request.getParameter("menu");
             String accion = request.getParameter("accion");
-            switch (accion){
-                case "Principal":
-                    request.getRequestDispatcher("Principal.jsp").forward(request, response);
-                    break;
-                case "Index":
-                    request.getRequestDispatcher("index.jsp").forward(request, response);
+            if (menu.equals("Principal")) {
+                request.getRequestDispatcher("Principal.jsp").forward(request, response);
+            }
+            if(menu.equals("Productos")){
+                switch (accion) {
+                case "Listar":
+                    List lista = pdao.listar();
+                    request.setAttribute("producto", lista);
                     break;
                 default:
-                    throw new AssertionError();
-        }
+                    throw new   AssertionError();   
+                }
+                        
+                request.getRequestDispatcher("Productos.jsp").forward(request, response);
+            }
+            if(menu.equals("Pedido")){
+                switch (accion) {
+                case "BuscarProducto":
+                   String id = request.getParameter("codigoProducto");
+                   pr.setId(Integer.parseInt(id));
+                   pr = pdao.buscar(id);
+                   request.setAttribute("pr", pr);
+                    break;
+                default:
+                    throw new   AssertionError();   
+                }
+                request.getRequestDispatcher("Pedido.jsp").forward(request, response);
+            }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
